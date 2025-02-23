@@ -41,6 +41,7 @@
         "stdio.h": "c",
         "buzzer.h": "c",
         "controle.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "font.h": "c"
     }
 }

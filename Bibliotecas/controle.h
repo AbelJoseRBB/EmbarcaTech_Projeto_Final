@@ -26,7 +26,11 @@ extern const uint maxIQAr;
 extern ssd1306_t ssd;
 
 void controlarIQAr(uint16_t adc_value);
+void controlarCO(uint16_t adc_value);
+void controlarPM10(uint16_t adc_value);
+void controlarPM25(uint16_t adc_value);
 void piscarVermelho(uint maximo, uint16_t adc_value, char *str);
 uint mapear_valor(uint16_t adc_value, uint maximo);
+int centralizar_texto(const char *str);
 
 #endif

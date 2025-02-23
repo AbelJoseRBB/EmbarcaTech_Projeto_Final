@@ -156,12 +156,17 @@ void ssd1306_vline(ssd1306_t *ssd, uint8_t x, uint8_t y0, uint8_t y1, bool value
 // Função para desenhar um caractere
 void ssd1306_draw_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y) {
     // Verifica se o caractere está dentro dos limites da matriz de fontes
-    if ((uint8_t)c >= 129) { // Aumente o limite para 129
-        c = 0; // Caractere não reconhecido (espaço em branco)
+    uint8_t index = (uint8_t)c;
+    if(index == 135){
+      index = 127;
+    }else{
+      if(index >= 129){
+        index = 0;
+      }
     }
-
+    
     // Obtém o índice do caractere na matriz de fontes
-    const uint8_t *char_data = font[(uint8_t)c];
+    const uint8_t *char_data = font[index];
 
     // Desenha o caractere na posição (x, y)
     for (uint8_t i = 0; i < 8; i++) { // Itera sobre as 8 linhas do caractere
