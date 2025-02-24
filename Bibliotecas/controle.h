@@ -1,36 +1,30 @@
 #ifndef CONTROLE_H
 #define CONTROLE_H
 
-#include <stdio.h>
-#include "pico/stdlib.h"
+#include "../Bibliotecas/setup.h"
 
-#include "hardware/pwm.h"
-#include "hardware/adc.h"
-#include "hardware/i2c.h"
+// Definições dos valores máximos para PM10, PM25, CO e IQAr
+extern const uint maxPM10;    // Valor máximo para PM10
+extern const uint maxPM25;    // Valor máximo para PM2.5
+extern const uint maxCO;      // Valor máximo para CO
+extern const uint maxIQAr;    // Valor máximo para a qualidade do ar (IQAr)
 
-#include "../Bibliotecas/ssd1306.h"
-#include "../Bibliotecas/font.h"
-
-#define pin_red 13
-#define pin_green 11
-#define buzzer1 21
-#define buzzer2 10
-#define wrap 4096
-
-extern const uint maxPM10;
-extern const uint maxPM25;
-extern const uint maxSO2;
-extern const uint maxCO;
-extern const uint maxO3;
-extern const uint maxIQAr;
+// Declaração do objeto SSD1306 para o display
 extern ssd1306_t ssd;
 
-void controlarIQAr(uint16_t adc_value);
-void controlarCO(uint16_t adc_value);
-void controlarPM10(uint16_t adc_value);
-void controlarPM25(uint16_t adc_value);
-void piscarVermelho(uint maximo, uint16_t adc_value, char *str);
-uint mapear_valor(uint16_t adc_value, uint maximo);
+// Função para centralizar um texto no display de 128x64 pixels
 int centralizar_texto(const char *str);
+
+// Função para mapear o valor do ADC para um valor proporcional ao máximo especificado
+uint mapear_valor(uint16_t adc_value, uint maximo);
+
+// Função para acionar a sirene e piscar o LED vermelho quando os valores estão críticos
+void piscarVermelho(uint maximo, uint16_t adc_value, char *str);
+
+// Funções específicas para controlar e monitorar os diferentes tipos de sensores
+void controlarIQAr(uint16_t adc_value);  // Monitoramento da qualidade do ar
+void controlarCO(uint16_t adc_value);    // Monitoramento da concentração de CO
+void controlarPM10(uint16_t adc_value);  // Monitoramento da concentração de PM10
+void controlarPM25(uint16_t adc_value);  // Monitoramento da concentração de PM2.5
 
 #endif

@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Monitoramento_Qualidade_de_Ar Monitoramento_Qualidade_de_Ar.c ArquivosC/ssd1306.c ArquivosC/buzzer.c ArquivosC/controle.c)
+add_executable(Monitoramento_Qualidade_de_Ar Monitoramento_Qualidade_de_Ar.c ArquivosC/ssd1306.c ArquivosC/controle.c ArquivosC/setup.c)
 
 pico_set_program_name(Monitoramento_Qualidade_de_Ar "Monitoramento_Qualidade_de_Ar")
 pico_set_program_version(Monitoramento_Qualidade_de_Ar "0.1")
