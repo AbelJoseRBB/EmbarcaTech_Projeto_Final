@@ -171,7 +171,7 @@ void controlarPM10(uint16_t adc_value) {
         ssd1306_rect(&ssd, 0, 0, 127, 63, cor, !cor);
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         ssd1306_draw_string(&ssd, "SEM PROBLEMAS", centralizar_texto("SEM PROBLEMAS"), 10);
-        ssd1306_draw_string(&ssd, "PM10", centralizar_texto("PM10"), 20);
+        ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
         ssd1306_draw_string(&ssd, "OTIMA", centralizar_texto("OTIMA"), 30);
         ssd1306_draw_string(&ssd, pm10_str, centralizar_texto(pm10_str), 40);
     } else if (PM10 <= 100) {
@@ -180,7 +180,7 @@ void controlarPM10(uint16_t adc_value) {
         ssd1306_rect(&ssd, 0, 0, 127, 63, cor, !cor);
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         ssd1306_draw_string(&ssd, "ATENCAO!", centralizar_texto("ATENCAO!"), 10);
-        ssd1306_draw_string(&ssd, "PM10", centralizar_texto("PM10"), 20);
+        ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
         ssd1306_draw_string(&ssd, "MODERADA", centralizar_texto("MODERADA"), 30);
         ssd1306_draw_string(&ssd, pm10_str, centralizar_texto(pm10_str), 40);
     } else if (PM10 <= 250) {
@@ -189,7 +189,7 @@ void controlarPM10(uint16_t adc_value) {
         ssd1306_rect(&ssd, 0, 0, 127, 63, cor, !cor);
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         ssd1306_draw_string(&ssd, "ALERTA!", centralizar_texto("ALERTA!"), 10);
-        ssd1306_draw_string(&ssd, "PM10", centralizar_texto("PM10"), 20);
+        ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
         ssd1306_draw_string(&ssd, "MUITO RUIM", centralizar_texto("MUITO RUIM"), 30);
         ssd1306_draw_string(&ssd, pm10_str, centralizar_texto(pm10_str), 40);
     } else {
@@ -217,7 +217,7 @@ void controlarPM25(uint16_t adc_value) {
         ssd1306_rect(&ssd, 0, 0, 127, 63, cor, !cor);
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         ssd1306_draw_string(&ssd, "SEM PROBLEMAS", centralizar_texto("SEM PROBLEMAS"), 10);
-        ssd1306_draw_string(&ssd, "PM2.5", centralizar_texto("PM2.5"), 20);
+        ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
         ssd1306_draw_string(&ssd, "OTIMA", centralizar_texto("OTIMA"), 30);
         ssd1306_draw_string(&ssd, pm25_str, centralizar_texto(pm25_str), 40);
     } else if (PM25 <= 50) {
@@ -226,7 +226,7 @@ void controlarPM25(uint16_t adc_value) {
         ssd1306_rect(&ssd, 0, 0, 127, 63, cor, !cor);
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         ssd1306_draw_string(&ssd, "ATENCAO!", centralizar_texto("ATENCAO!"), 10);
-        ssd1306_draw_string(&ssd, "PM2.5", centralizar_texto("PM2.5"), 20);
+        ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
         ssd1306_draw_string(&ssd, "MODERADA", centralizar_texto("MODERADA"), 30);
         ssd1306_draw_string(&ssd, pm25_str, centralizar_texto(pm25_str), 40);
     } else if (PM25 <= 125) {
@@ -235,7 +235,7 @@ void controlarPM25(uint16_t adc_value) {
         ssd1306_rect(&ssd, 0, 0, 127, 63, cor, !cor);
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         ssd1306_draw_string(&ssd, "ALERTA!", centralizar_texto("ALERTA!"), 10);
-        ssd1306_draw_string(&ssd, "PM2.5", centralizar_texto("PM2.5"), 20);
+        ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
         ssd1306_draw_string(&ssd, "MUITO RUIM", centralizar_texto("MUITO RUIM"), 30);
         ssd1306_draw_string(&ssd, pm25_str, centralizar_texto(pm25_str), 40);
     } else {
