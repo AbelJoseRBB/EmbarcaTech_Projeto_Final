@@ -8,7 +8,6 @@
 #include "hardware/i2c.h"
 #include "../Bibliotecas/ssd1306.h"
 #include "../Bibliotecas/font.h"
-#include "../Bibliotecas/setup.h"
 
 // Definições dos pinos utilizados para os botões e joystick
 #define buttonB 6  // Botão B conectado ao pino GPIO 6
