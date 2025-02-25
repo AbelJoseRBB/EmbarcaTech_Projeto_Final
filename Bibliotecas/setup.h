@@ -29,8 +29,6 @@
 #define i2c_sda 14  // Pino SDA do I2C conectado ao GPIO 14
 #define i2c_scl 15  // Pino SCL do I2C conectado ao GPIO 15
 
-// Função para controlar a sirene com duas frequências (grave e aguda)
-void sirene(uint gpio, uint gpio2, uint freq_grave, uint freq_agudo, uint duration);
 
 // Função para configurar um botão com interrupção
 void button_setup(uint gpio, gpio_irq_callback_t callback);

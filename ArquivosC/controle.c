@@ -22,6 +22,35 @@ uint mapear_valor(uint16_t adc_value, uint maximo){
     return ((float) adc_value / 4095) * maximo - 5;  // Ajusta a leitura do ADC para o intervalo máximo
 }
 
+// Função que controla o funcionamento da sirene com duas frequências (grave e aguda)
+void sirene(uint gpio, uint gpio2, uint freq_grave, uint freq_agudo, uint duration) {
+    uint slice_num = pwm_gpio_to_slice_num(gpio);  // Obtém o número do slice PWM associado ao pino
+    uint clock = 125000000; // Frequência do clock do PWM (125 MHz)
+    
+    // Calcula o valor de wrap para cada frequência
+    uint wrap_value_grave = clock / freq_grave; // Valor de wrap para a frequência grave
+    uint wrap_value_agudo = clock / freq_agudo; // Valor de wrap para a frequência aguda
+
+    absolute_time_t start_time = get_absolute_time();  // Obtém o tempo inicial
+    while (absolute_time_diff_us(start_time, get_absolute_time()) < duration * 1000) {  // Loop por "duration" milissegundos
+        // Toca a frequência grave 
+        pwm_set_wrap(slice_num, wrap_value_grave);  // Define o valor de wrap para a frequência grave
+        pwm_set_gpio_level(gpio, wrap_value_grave / 3); // Define o ciclo de trabalho do PWM para o pino do GPIO
+        pwm_set_gpio_level(gpio2, wrap_value_grave / 3); // Define o ciclo de trabalho do PWM para o segundo pino
+        sleep_ms(200); // Tempo de cada pulso (200 ms)
+
+        // Toca a frequência aguda 
+        pwm_set_wrap(slice_num, wrap_value_agudo);  // Define o valor de wrap para a frequência aguda
+        pwm_set_gpio_level(gpio, wrap_value_agudo / 3); // Define o ciclo de trabalho do PWM para o pino do GPIO
+        pwm_set_gpio_level(gpio2, wrap_value_grave / 3); // Define o ciclo de trabalho do PWM para o segundo pino
+        sleep_ms(200); // Tempo de cada pulso (200 ms)
+    }
+
+    // Desliga o buzzer ao final da duração
+    pwm_set_gpio_level(gpio, 0);
+    pwm_set_gpio_level(gpio2, 0); // Desliga ambos os pinos
+}
+
 // Função para piscar o LED vermelho e emitir um som de alerta
 void piscarVermelho(uint maximo, uint16_t adc_value, char *str) {
     // Enquanto o valor mapeado do ADC for maior que um limiar crítico
@@ -34,10 +63,17 @@ void piscarVermelho(uint maximo, uint16_t adc_value, char *str) {
         ssd1306_rect(&ssd, 2, 2, 123, 59, cor, !cor);
         
         // Exibe as mensagens centralizadas no display
-        ssd1306_draw_string(&ssd, "URGENTE!!", centralizar_texto("URGENTE!!"), 10);
-        ssd1306_draw_string(&ssd, "QUALIDADE", centralizar_texto("QUALIDADE"), 20);
-        ssd1306_draw_string(&ssd, "PESSIMA", centralizar_texto("PESSIMA"), 30);
-        ssd1306_draw_string(&ssd, str, centralizar_texto(str), 40);  // Exibe o valor do IQA
+        if(str[0] == 'I'){
+            ssd1306_draw_string(&ssd, "URGENTE!!", centralizar_texto("URGENTE!!"), 10);
+            ssd1306_draw_string(&ssd, "QUALIDADE", centralizar_texto("QUALIDADE"), 20);
+            ssd1306_draw_string(&ssd, "PESSIMA", centralizar_texto("PESSIMA"), 30);
+            ssd1306_draw_string(&ssd, str, centralizar_texto(str), 40);  // Exibe o valor do IQA
+        }else{
+            ssd1306_draw_string(&ssd, "URGENTE!!", centralizar_texto("URGENTE!!"), 10);
+            ssd1306_draw_string(&ssd, "CONCENTRACAO", centralizar_texto("CONCENTRACAO"), 20);
+            ssd1306_draw_string(&ssd, "PESSIMA", centralizar_texto("PESSIMA"), 30);
+            ssd1306_draw_string(&ssd, str, centralizar_texto(str), 40);  // Exibe a concentração dos poluentes 
+        }
         
         // Ativa os LEDs e o buzzer
         ssd1306_send_data(&ssd);

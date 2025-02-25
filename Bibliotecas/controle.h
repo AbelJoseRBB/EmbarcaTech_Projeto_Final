@@ -18,6 +18,9 @@ int centralizar_texto(const char *str);
 // Função para mapear o valor do ADC para um valor proporcional ao máximo especificado
 uint mapear_valor(uint16_t adc_value, uint maximo);
 
+// Função para controlar a sirene com duas frequências (grave e aguda)
+void sirene(uint gpio, uint gpio2, uint freq_grave, uint freq_agudo, uint duration);
+
 // Função para acionar a sirene e piscar o LED vermelho quando os valores estão críticos
 void piscarVermelho(uint maximo, uint16_t adc_value, char *str);
 
