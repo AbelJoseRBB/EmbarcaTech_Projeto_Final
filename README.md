@@ -1,6 +1,11 @@
 # Sistema de Monitoramento da Qualidade do Ar
 Projeto para monitoramento da qualidade do ar, utilizando o Raspberry Pi Pico W e um display OLED SSD1306. Sensores (simulados por um joystick) capturam dados que são processados para determinar os níveis de poluentes no ar, como CO, PM10 e PM2.5. O sistema fornece alertas visuais e sonoros em casos críticos.
 
+# Vídeo Explicativo
+A seguir um vídeo explicativo do projeto.
+
+https://drive.google.com/file/d/10AthzcxbARXmoBIOvCiYJZkTimYx8_gf/view?usp=sharing 
+
 # Instruções  
 Para executar o código, é necessário possuir um Raspberry Pi Pico W e conectar corretamente os periféricos ao hardware.  
 
